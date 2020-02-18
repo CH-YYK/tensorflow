@@ -67,12 +67,15 @@ index 08116b3ab53..76f59844312 100644
  #endif
  
  /* pollset->mu lock must be held by the caller before calling this.
-@@ -1122,7 +1122,7 @@ static grpc_error* pollset_work(grpc_pollset* pollset,
+@@ -1123,7 +1123,7 @@
  #define WORKER_PTR (&worker)
  #endif
  #ifndef NDEBUG
 -  WORKER_PTR->originator = gettid();
 +  WORKER_PTR->originator = sys_gettid();
  #endif
-   if (GRPC_TRACE_FLAG_ENABLED(grpc_polling_trace)) {
+   if (grpc_polling_trace.enabled()) {
      gpr_log(GPR_INFO,
+
+--
+2.22.0
